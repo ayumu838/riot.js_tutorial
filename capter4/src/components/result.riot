@@ -1,0 +1,20 @@
+<result>
+  <h2>Search Result</h2>
+
+  <ul>
+    <li each={ gif in gifsJson } ket={ gif.id }>
+      <img src={ gif.images.downsized.url } alt={ gif.title } />
+    </li>
+  </ul>
+
+  <script>
+    export default {
+      onMounted(props) {
+        props.observable.on('show gifs', response => {
+          this.gifsJson = response
+          this.update()
+        })
+      }
+    }
+  </script>
+</result>
