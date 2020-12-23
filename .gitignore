@@ -30,4 +30,5 @@ Temporary Items
 
 *node_modules/
 *.cache/
-*dist
+*dist/
+*.env
