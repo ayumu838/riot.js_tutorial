@@ -1,6 +1,6 @@
 <result>
   <h2>Search Result</h2>
-  <Spinner />
+  <Spinner if={ isSearching } />
 
   <ul>
     <li each={ gif in gifsJson } ket={ gif.id }>
@@ -16,10 +16,18 @@
         Spinner
       },
       onMounted(props) {
-        props.observable.on('show gifs', response => {
+        const obs = props.observable
+
+        obs.on('start searching', () => {
+          this.isSearching = true
+        }),
+        obs.on('show gifs', response => {
           this.gifsJson = response
           this.update()
         })
+      },
+      onBeforeUpdate() {
+        this.isSearching = false
       }
     }
   </script>
