@@ -1,5 +1,6 @@
 <result>
   <h2>Search Result</h2>
+  <Spinner />
 
   <ul>
     <li each={ gif in gifsJson } ket={ gif.id }>
@@ -8,7 +9,12 @@
   </ul>
 
   <script>
+  import Spinner from './spinner'
+
     export default {
+      components: {
+        Spinner
+      },
       onMounted(props) {
         props.observable.on('show gifs', response => {
           this.gifsJson = response
