@@ -1,5 +1,5 @@
 <result>
-  <h2>Search Result</h2>
+  <h2>Search Result: { searchWord }</h2>
   <Spinner if={ isSearching } />
 
   <ul>
@@ -22,7 +22,8 @@
           this.isSearching = true
         }),
         obs.on('show gifs', response => {
-          this.gifsJson = response
+          this.gifsJson = response.data
+          this.searchWord = response.word
           this.update()
         })
       },

@@ -34,10 +34,9 @@
         searchGifs(e.target.search.value)
           .then( data => {
             this.httpStatus = 200
-            obs.trigger('show gifs', data)
+            obs.trigger('show gifs', {data, word: e.target.search.value})
           })
           .catch(e => {
-            cosole.log(e)
             this.httpStatus = 500
           })
           .then(() => {
