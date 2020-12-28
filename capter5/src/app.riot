@@ -4,18 +4,42 @@
   </div>
 
   <h1>{ props.title }</h1>
-  <h2>{ props.subTitle }</h2>
-  <div is="child" title="This is child" />
+
+  <ul>
+    <li
+      each={ (item, i) in state.items }
+      key={ item.id }
+    >
+      { `${item.id}: ${item.name}`}
+    </li>
+  </ul>
+  <button onclick={ reload }> reload </button>
 
   <script>
-    import Child from './components/child.riot'
+    import anime from 'animejs'
 
     export default {
-      components: {
-        Child
+      state: {
+        items: [
+          { name: 'ハガネール', id: 0},
+          { name: 'ルギア', id: 1},
+          { name: 'ミュウツー', id: 2},
+          { name: 'ヘラクロス', id: 3},
+          { name: 'カビゴン', id: 4},
+        ]
       },
-      onBeforeMount(props, state) {
+      onBeforeMount() {
 
+      },
+      onMounted() {
+        anime( {
+          targets: 'li',
+          translateX: [200, 0],
+          delay: anime.stagger(100)
+        })
+      },
+      reload () {
+        window.location.reload()
       }
     }
   </script>
