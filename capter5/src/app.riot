@@ -11,6 +11,7 @@
       key={ item.id }
     >
       { `${item.id}: ${item.name}`}
+      <button onclick={ remove } id= { i }> remove </button>
     </li>
   </ul>
   <button onclick={ reload }> reload </button>
@@ -57,6 +58,16 @@
           targets: 'li',
           translateX: [200, 0],
           delay: anime.stagger(100)
+        })
+      },
+      remove(e) {
+        const { items } = this.state
+        items.splice(e.target.id, 1)
+
+        anime({
+          targets: e.target.parentNode,
+          translateX: 200,
+          complete: () => this.update({ items })
         })
       }
     }
