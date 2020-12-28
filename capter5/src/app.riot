@@ -5,9 +5,15 @@
 
   <h1>{ props.title }</h1>
   <h2>{ props.subTitle }</h2>
+  <div is="child" title="This is child" />
 
   <script>
+    import Child from './components/child.riot'
+
     export default {
+      components: {
+        Child
+      },
       onBeforeMount(props, state) {
 
       }
@@ -16,7 +22,7 @@
 
   <style>
     h2 {
-      color: #008080
+      color: #008080;
     }
   </style>
 </app>
