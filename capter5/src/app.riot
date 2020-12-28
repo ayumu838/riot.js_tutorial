@@ -11,11 +11,13 @@
       key={ item.id }
     >
       { `${item.id}: ${item.name}`}
+      <button onclick={ expand } id= { i }> expand </button>
       <button onclick={ remove } id= { i }> remove </button>
     </li>
   </ul>
   <button onclick={ reload }> reload </button>
   <button onclick={ add }> add </button>
+  <button onclick={ expandAll } id= { i }> expand all </button>
 
   <script>
     import anime from 'animejs'
@@ -68,6 +70,23 @@
           targets: e.target.parentNode,
           translateX: 200,
           complete: () => this.update({ items })
+        })
+      },
+      expand(e) {
+        anime({
+          targets: e.target.parentNode,
+          scale: 2,
+          translateX: 700,
+          complete: (anim) => anim.reset()
+        })
+      },
+      expandAll() {
+        anime({
+          targets: 'li',
+          scale: 2,
+          translateX: 700,
+          delay: anime.stagger(100),
+          direction: 'alternate'
         })
       }
     }
